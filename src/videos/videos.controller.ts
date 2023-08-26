@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UsePipes, ValidationPipe } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query, UsePipes, ValidationPipe, UseInterceptors } from '@nestjs/common';
 import { VideosService } from './videos.service';
 import { CreateVideoDto } from './dto/create-video.dto';
 import { UpdateVideoDto } from './dto/update-video.dto';
 import { ApiTags } from '@nestjs/swagger';
+import { LoggerInterceptor } from 'src/utils/logger/logger.interceptor';
 
 @ApiTags('videos')
 @Controller('videos')
+@UseInterceptors(LoggerInterceptor)
 export class VideosController {
   constructor(private readonly videosService: VideosService) {}
 
@@ -18,7 +20,6 @@ export class VideosController {
 
   @Get() //TODO: http://localhost:3000/videos?id=77&description=holaamigo
   findAll(@Query() query: any) {
-    console.log(query);
     return this.videosService.findAll();
   }
 
