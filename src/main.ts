@@ -7,6 +7,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
+    .addBearerAuth()
     .setTitle('API NestJS')
     .setDescription(
       'Aqui esta la documentación del API del curso que estoy siguiendo',
