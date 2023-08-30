@@ -8,6 +8,7 @@ import { AwardsModule } from './awards/awards.module';
 import { ConfigModule } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -21,6 +22,7 @@ import { join } from 'path';
     AuthModule,
     VideosModule,
     AwardsModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
