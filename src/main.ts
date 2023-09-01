@@ -23,7 +23,7 @@ async function bootstrap() {
       'Aqui esta la documentación del API del curso que estoy siguiendo',
     )
     .addTag('videos')
-    .addTag('couses')
+    .addTag('courses')
     .addTag('auth')
     .addTag('awards')
     .build();
