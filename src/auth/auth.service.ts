@@ -5,10 +5,12 @@ import { Users, UsersDocument } from 'src/users/model/users.scheme';
 import { Model } from 'mongoose';
 import { comparePlainToHash, plainToHash } from './utils/handleBcrypt';
 import { LoginAuthDto } from './dto/login-auth.dto';
+import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
+    private readonly jwtService: JwtService,
     @InjectModel(Users.name) private readonly userModel: Model<UsersDocument>,
   ) {}
 
@@ -42,6 +44,14 @@ export class AuthService {
 
     const userFlat = existsAuth.toObject();
     delete userFlat.password;
-    return userFlat;
+
+    const payload = {
+      id: userFlat._id,
+      name: userFlat.name,
+    };
+
+    const token = this.jwtService.sign(payload);
+
+    return { token, user: userFlat };
   }
 }

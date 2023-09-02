@@ -15,7 +15,6 @@ export class VideosController {
 
   @Post()
   create(@Body() createVideoDto: CreateVideoDto) {
-    console.log(createVideoDto);
     return createVideoDto;
     // return this.videosService.create(createVideoDto);
   }
@@ -23,7 +22,6 @@ export class VideosController {
   @Post('upload')
   @UseInterceptors(FileInterceptor('avatar', { storage }))
   handleUpload(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
     return file;
   }
 
@@ -34,7 +32,6 @@ export class VideosController {
 
   @Get(':id') //TODO: http://localhost:3000/videos/video1
   findOne(@Param('id') id: string) {
-    console.log(id);
     return this.videosService.findOne(+id);
   }
 

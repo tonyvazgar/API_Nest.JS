@@ -14,6 +14,9 @@ export class Users {
   avatar: string;
 
   @Prop()
+  name: string;
+
+  @Prop()
   description: string;
 }
 

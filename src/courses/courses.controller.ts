@@ -18,7 +18,6 @@ export class CoursesController {
 
   @Get(':title')
   getDetail(@Param('title', new SlugPipe()) title: number) {
-    console.log(title);
     return this.coursesService.findOne(1);
   }
 }
